@@ -1,5 +1,5 @@
 const readCSV = require('../../src/csvReader');
-const parseQuery = require('../../src/queryParser');
+const {parseQuery} = require('../../src/queryParser');
 const executeSELECTQuery = require('../../src/index');
 
 test('Read CSV File', async () => {
@@ -19,6 +19,7 @@ test('Parse SQL Query', () => {
         whereClauses: [],
         joinCondition: null,
         joinTable: null,
+        "joinType": null,
     });
 });
 
@@ -40,6 +41,7 @@ test('Parse SQL Query with WHERE Clause', () => {
         table: 'sample',
         joinCondition: null,
         joinTable: null,
+        "joinType": null,
         whereClauses: [{
           field: "age",
           operator: "=",
@@ -63,6 +65,7 @@ test('Parse SQL Query with Multiple WHERE Clauses', () => {
     expect(parsed).toEqual({
         fields: ['id', 'name'],
         table: 'sample',
+        "joinType": null,
         joinCondition: null,
         joinTable: null,
         whereClauses: [{
